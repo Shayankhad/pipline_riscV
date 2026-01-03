@@ -1,4 +1,4 @@
-module HazardUnit(
+module hazard_unit(
 	input RegWriteM,RegWriteW,
 
 	input[1:0] ResultSrcE,PCSrcE,ResultSrcM,ResultSrcW,

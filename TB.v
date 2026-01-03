@@ -1,13 +1,13 @@
 `timescale 1ns/1ns
-module	TBPipe();
-	reg clk=1'b0;
+module	test_bench();
+	reg clk= 1'b0 ;
 
-	TopLevelPipe P(clk);
+	pipe_top_level pip_top(clk);
 	
 	always #20 clk=~clk;
 
 	initial begin 
-	#4840
+	#5000
 	$stop;
 	end
 endmodule

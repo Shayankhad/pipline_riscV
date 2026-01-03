@@ -1,4 +1,4 @@
-module	DataPath(
+module	dapa_path(
 	input clk,MemWriteD,ALUSrcD,RegWriteD,JumpD,BranchD,JalrD,StallF,
 	StallD,FlushD,FlushE,
 

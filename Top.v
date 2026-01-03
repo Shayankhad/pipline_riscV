@@ -1,4 +1,4 @@
-module TopLevelPipe(input clk);
+module pipe_top_level(input clk);
 
 	// wires
 	wire MemWriteD,ALUSrcD,RegWriteD,JumpD,BranchD,
@@ -11,7 +11,7 @@ module TopLevelPipe(input clk);
 
 
 	// inst
-	HazardUnit HU(
+	hazard_unit HU(
 		RegWriteM,RegWriteW,ResultSrcE,PCSrcE,ResultSrcM,
 		ResultSrcW,Rs1D,Rs2D,Rs1E,Rs2E,RdE,RdM,RdW,StallF,
 		StallD,FlushD,FlushE,ForwardAE,ForwardBE
@@ -19,13 +19,13 @@ module TopLevelPipe(input clk);
 
 
 
-	Controller CTRL(
+	controler CTRL(
 		func3D,func7,op,MemWriteD,ALUSrcD,RegWriteD,
 		JumpD,BranchD,JalrD,ResultSrcD,ALUControlD,ImmSrcD
 	);
 
 
-	DataPath DP(
+	dapa_path DP(
 		clk,MemWriteD,ALUSrcD,RegWriteD,JumpD,
 		BranchD,JalrD,StallF,StallD,FlushD,FlushE,
 		ResultSrcD,ForwardAE,ForwardBE,PCSrcE,ALUControlD,
@@ -35,5 +35,5 @@ module TopLevelPipe(input clk);
 	);
 
 
-	Decoder	 DC(JalrE,JumpE,BranchE,ZeroE,ALUResult0,func3E,PCSrcE);
+	decoder	 DC(JalrE,JumpE,BranchE,ZeroE,ALUResult0,func3E,PCSrcE);
 endmodule

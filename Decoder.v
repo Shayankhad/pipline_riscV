@@ -1,4 +1,4 @@
-module Decoder(
+module decoder(
 	input JalrE,JumpE,BranchE,ZeroE,neg,
 	input[2:0] func3,output[1:0] PCSrc
 	

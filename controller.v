@@ -27,7 +27,7 @@
 
 `define 	bge	3'b101
 
-module Controller(
+module controler(
 
 
 	input[2:0] func3,
