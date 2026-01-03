@@ -7,6 +7,7 @@
 `define		S_Type	7'b0100011
 `define		U_Type	7'b0110111
 `define 	B_Type	7'b1100011
+
 `define 	Sub	10'b0100_0000_00
 `define		Add	10'b0000_0000_00
 `define 	Or	10'b0000_0001_10
@@ -27,9 +28,12 @@
 `define 	bge	3'b101
 
 module Controller(
+
+
 	input[2:0] func3,
 	input[6:0] func7,op,
-	output reg MemWrite,ALUSrc,RegWrite,Jump,Branch,Jalr,
+
+	output reg MemWrite , ALUSrc , RegWrite , Jump , Branch , Jalr,
 	output reg [1:0] ResultSrc,
 	output reg [2:0] ALUControl,ImmSrc
 	);
@@ -52,8 +56,10 @@ module Controller(
 
 					`Add: ALUControl=3'b010;
 					`Sub:ALUControl=3'b110;
+
 					`And:ALUControl =3'b000;
 					`Or :ALUControl=3'b001;
+
 					`Slt:ALUControl=3'b100;
 					`Sltu:ALUControl= 3'b111;
 				endcase
@@ -90,12 +96,14 @@ module Controller(
 					`bne:	ALUControl=3'b110;
 
 					`blt:	ALUControl=3'b111; 
-
 					`bge:	ALUControl=3'b111;
 				endcase
 				end
-				
+
 			`U_Type:	{ResultSrc,ImmSrc,RegWrite}=6'b111001;
+
 		endcase
+
 	end
+	
 endmodule
