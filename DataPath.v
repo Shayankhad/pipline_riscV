@@ -1,38 +1,40 @@
 module	dapa_path(
-	input clk,MemWriteD,ALUSrcD,RegWriteD,JumpD,BranchD,JalrD,StallF,
-	StallD,FlushD,FlushE,
+	input clk , MemWriteD, ALUSrcD, RegWriteD, JumpD, BranchD, JalrD,StallF,
+	StallD ,FlushD , FlushE,
+	input[1:0] ResultSrcD, ForwardAE,ForwardBE ,PCSrcE,
+	input [2:0] ALUControlD ,ImmSrcD,
 
-	input[1:0] ResultSrcD,ForwardAE,ForwardBE,PCSrcE,
-	input [2:0] ALUControlD,ImmSrcD,
-	output BranchE,JumpE,JalrE,ZeroE,ALUResult0,RegWriteM,RegWriteW,
+
+
+	output BranchE,JumpE, JalrE ,ZeroE, ALUResult0 ,RegWriteM, RegWriteW,
 	output[1:0] ResultSrcE, 
 	output[2:0] func3D,func3E,
-	output[6:0] func7,op,
-	output[4:0] Rs1D,Rs2D,Rs1E,Rs2E,RdE,RdM,RdW , 
+	output[6:0] func7, op,
+	output[4:0] Rs1D, Rs2D ,Rs1E, Rs2E ,RdE, RdM,RdW , 
 	output[1:0] ResultSrcM,ResultSrcW
 	);
 	
 
 	// ---- wires
-	wire[31:0]	PCPlus4F,PCTargetE,ALUResultE,PCF_,
-		PCF,InstrF,InstrD,ResultW,RD1D,RD2D,ExtImmD,SrcAE,
-		ALUResultM,RD1E,RD2E,
-		WriteDataE,ExtImmE,SrcBE,PCE,WriteDataM,ReadDataM,
-		ALUResultW,ReadDataW,PCPlus4W,ExtImmW,PCD,PCPlus4D,
-		PCPlus4E,ExtImmM,PCPlus4M;
+	wire[31:0]	PCPlus4F ,PCTargetE, ALUResultE,PCF_,
+		PCF,InstrF,InstrD,ResultW, RD1D,RD2D,ExtImmD,SrcAE,
+		ALUResultM, RD1E,RD2E ,
+		WriteDataE ,ExtImmE, SrcBE,PCE, WriteDataM, ReadDataM,
+		ALUResultW, ReadDataW ,PCPlus4W, ExtImmW, PCD, PCPlus4D,
+		PCPlus4E, ExtImmM, PCPlus4M;
 
 	wire[4:0] RdD;
 	wire[2:0] ALUControlE;
-	wire MemWriteM,RegWriteE,MemWriteE,ALUSrcE;
+	wire MemWriteM, RegWriteE, MemWriteE,ALUSrcE;
 
 
 		// ---- assign
 	assign Rs1D = InstrD[19:15];
 	assign Rs2D = InstrD[24:20];
-	assign RdD	= InstrD[11:7];
-	assign func3D=InstrD[14:12];
-	assign	func7=	InstrD[31:25];
-	assign  op =InstrD[6:0];
+	assign RdD = InstrD[11:7];
+	assign func3D = InstrD[14:12];
+	assign func7 = InstrD[31:25];
+	assign op = InstrD[6:0];
 	assign ALUResult0 = ALUResultE[0];
 
 
