@@ -7,7 +7,6 @@ module DataMem(
 	);
 
 	reg [7:0] mem [0:$pow(2, 16)-1];
-
 	initial $readmemh("data.mem", mem);
 
 	wire [31:0] adr ;

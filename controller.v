@@ -12,7 +12,6 @@
 `define		Add	10'b0000_0000_00
 `define 	Or	10'b0000_0001_10
 `define		And	10'b0000_0001_11
-`define		Sltu 10'b0000_0000_11
 `define		Slt	10'b0000_0000_10
 `define 	addi	3'b000
 `define		lw	3'b010
@@ -22,10 +21,8 @@
 `define		slti	3'b010
 `define		beq	3'b000
 `define		jalr	3'b000
-`define		blt	3'b100
 `define 	bne	3'b001
 
-`define 	bge	3'b101
 
 module controler(
 
@@ -61,7 +58,6 @@ module controler(
 					`Or :ALUControl=3'b001;
 
 					`Slt:ALUControl=3'b100;
-					`Sltu:ALUControl= 3'b111;
 				endcase
 
 				end
@@ -95,8 +91,6 @@ module controler(
 					`beq:	ALUControl=3'b110;
 					`bne:	ALUControl=3'b110;
 
-					`blt:	ALUControl=3'b111; 
-					`bge:	ALUControl=3'b111;
 				endcase
 				end
 
