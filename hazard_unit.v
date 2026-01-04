@@ -1,17 +1,19 @@
 module hazard_unit(
-	input RegWriteM,RegWriteW,
+	input RegWriteM , RegWriteW,
 
-	input[1:0] ResultSrcE,PCSrcE,ResultSrcM,ResultSrcW,
+	input[1:0] ResultSrcE , PCSrcE , ResultSrcM , ResultSrcW,
 
-	input[4:0] Rs1D,Rs2D,Rs1E,Rs2E,RdE,RdM,RdW,
-	output StallF,StallD,FlushD,FlushE,
+	input[4:0] Rs1D , Rs2D , Rs1E , Rs2E , RdE , RdM , RdW,
 
-	output[1:0] ForwardAE,ForwardBE
+	output StallF , StallD , FlushD , FlushE,
+
+	output[1:0] ForwardAE , ForwardBE
 	);
 
 	wire lwStall;
 
-	assign ForwardAE = ( ( Rs1E==RdM && RegWriteM) &&Rs1E!=0 ) ? 2'b10:
+	assign ForwardAE = ( ( Rs1E == RdM && RegWriteM ) && Rs1E !=0 ) ? 2'b10:
+
 			 ((( Rs1E == RdW && RegWriteW ) && Rs1E!=0) || ( Rs1E == RdW && ResultSrcW == 2'b11 && Rs1E!=0))?2'b01:
 			( Rs1E == RdM && ResultSrcM == 2'b11 && Rs1E !=0)?2'b11:
 			 2'b00;
@@ -20,6 +22,7 @@ module hazard_unit(
 
 	assign ForwardBE=((Rs2E==RdM && RegWriteM)&&Rs2E!=0)?2'b10:
 			(((Rs2E==RdW && RegWriteW)&&Rs2E!=0) || (Rs2E==RdW && ResultSrcW==2'b11 && Rs2E!=0))?2'b01:
+			
 			 (Rs2E==RdM && ResultSrcM==2'b11 && Rs2E!=0)?2'b11:
 			 2'b00;
 
