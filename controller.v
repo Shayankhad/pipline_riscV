@@ -17,7 +17,6 @@
 `define		lw	3'b010
 `define 	ori	3'b110
 `define		xori	3'b100
-`define  	sltiu 3'b011
 `define		slti	3'b010
 `define		beq	3'b000
 `define		jalr	3'b000
@@ -75,7 +74,6 @@ module controler(
 
 					`slti:ALUControl=3'b100;
 
-					`sltiu: begin ALUControl=3'b111; ImmSrc = 3'b101; end
 				endcase
 				end
 			`Jalr:	{Jalr,ALUSrc, ResultSrc,RegWrite}=5'b11101;
